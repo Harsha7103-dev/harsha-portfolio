@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harsha Charan | Front-End & React Native Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121a31;
+      --card: rgba(18, 26, 49, 0.88);
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eaf1ff;
+      --muted: #a6b1c9;
+      --accent: #5eead4;
+      --accent-2: #60a5fa;
+      --chip: rgba(255, 255, 255, 0.07);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(96, 165, 250, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(94, 234, 212, 0.14), transparent 26%),
+        linear-gradient(180deg, #09101d 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(9, 16, 29, 0.65);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      font-size: 1.05rem;
+    }
+
+    .brand span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 72px 0 36px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-card, .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -50px -50px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(94, 234, 212, 0.22), transparent 62%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(94, 234, 212, 0.08);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid rgba(94, 234, 212, 0.14);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.08;
+      margin: 18px 0 16px;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: nowrap;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #08111f;
+    }
+
+    .btn-secondary {
+      border-color: var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .side-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.18), rgba(96, 165, 250, 0.18));
+      border: 1px solid var(--line);
+    }
+
+    .meta {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .meta strong { color: var(--text); display: block; font-size: 0.9rem; }
+
+    section {
+      padding: 18px 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin: 0 0 18px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .about p, .card p { margin: 0; color: var(--muted); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip {
+      background: var(--chip);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .timeline-item {
+      border-left: 2px solid rgba(96, 165, 250, 0.35);
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: "";
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      position: absolute;
+      left: -7px;
+      top: 8px;
+    }
+
+    .item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .role {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .period {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .company {
+      color: var(--muted);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    li + li { margin-top: 8px; }
+
+    .skill-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-box {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .skill-box h3 {
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+    }
+
+    .project-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .highlights {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 8px;
+    }
+
+    .highlight {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      text-align: center;
+    }
+
+    .highlight h3 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+
+    .highlight p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      padding: 34px 0 60px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-2,
+      .projects,
+      .skill-columns,
+      .highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .hero-card,
+      .card,
+      .side-card {
+        padding: 20px;
+      }
+
+      h1 { font-size: 2rem; }
+
+      .cta-row {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .btn {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        font-size: 14px;
+      }
+
+      .brand {
+        font-size: 1rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+    }  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Harsha Charan J</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="hero-card">
+        <div class="eyebrow">Available for Front-End / React Native Roles</div>
+        <h1>Front-End & <span class="gradient">React Native</span> Developer</h1>
+        <p class="lead">
+          Results-driven developer with 4+ years of experience building responsive web apps and high-performance mobile applications.
+          Skilled in React, React Native, JavaScript, TypeScript, Redux, REST APIs, UI implementation, and performance optimization.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-secondary" href="#" onclick="downloadPDF()">My Resume</a>
+          <a class="btn btn-primary" href="mailto:yourmail@example.com">Hire Me</a>
+          <a class="btn btn-secondary" href="#projects">View Projects</a>
+        </div>
+      </div>
+
+      <aside class="hero-card side-card">
+        <div>
+          <div class="avatar">HC</div>
+          <h2 style="margin:16px 0 6px;">Harsha Charan J</h2>
+          <p style="margin:0; color: var(--muted);">Front-End Developer • React Native Developer</p>
+        </div>
+        <div class="meta">
+          <div><strong>Experience</strong>4+ Years</div>
+          <div><strong>Location</strong>India</div>
+          <div><strong>Email</strong>yourmail@example.com</div>
+          <div><strong>Phone</strong>+91 XXXXX XXXXX</div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="container grid-2">
+        <div class="card about">
+          <h2 class="section-title">About Me</h2>
+          <p>
+            I am a passionate Front-End and React Native Developer with strong experience in creating user-friendly,
+            scalable, and modern applications. I focus on clean UI, smooth user experience, reusable components,
+            API integration, and application performance. I have worked on HRMS, enterprise apps, dashboard modules,
+            leave workflows, authentication flows, and production-ready app releases.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Core Strengths</h2>
+          <div class="chips">
+            <span class="chip">React.js</span>
+            <span class="chip">React Native</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Redux</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Responsive UI</span>
+            <span class="chip">Performance Tuning</span>
+            <span class="chip">Play Store / App Store</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="highlights">
+          <div class="highlight">
+            <h3>4+</h3>
+            <p>Years Experience</p>
+          </div>
+          <div class="highlight">
+            <h3>20+</h3>
+            <p>Modules Delivered</p>
+          </div>
+          <div class="highlight">
+            <h3>10+</h3>
+            <p>Mobile Features Built</p>
+          </div>
+          <div class="highlight">
+            <h3>100%</h3>
+            <p>Focus on UI & UX</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container card">
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-sub">4+ years of experience in web and mobile application development.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="item-top">
+              <h3 class="role">React Native / Front-End Developer</h3>
+              <span class="period">2022 – Present</span>
+            </div>
+            <div class="company">Current Organization</div>
+            <ul>
+              <li>Developing and maintaining enterprise mobile apps using React Native.</li>
+              <li>Built leave request, attendance, dashboard, settings, profile, and approval workflows.</li>
+              <li>Integrated REST APIs, authentication, file viewers, location tracking, and push-related features.</li>
+              <li>Improved app performance by reducing re-renders, optimizing state handling, and enhancing UI responsiveness.</li>
+              <li>Worked on production releases, beta testing, bug fixing, and deployment support for Android and iOS.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <div class="item-top">
+              <h3 class="role">Front-End Developer</h3>
+              <span class="period">2021 – 2022</span>
+            </div>
+            <div class="company">Previous Organization</div>
+            <ul>
+              <li>Created responsive web interfaces using React.js, JavaScript, HTML, CSS, and reusable components.</li>
+              <li>Implemented modern UI designs for forms, dashboards, and user workflows.</li>
+              <li>Handled API integration, validations, state management, and UI bug fixes.</li>
+              <li>Collaborated with backend and testing teams to deliver stable and user-friendly features.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container card">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skill-columns">
+          <div class="skill-box">
+            <h3>Frontend</h3>
+            <div class="chips">
+              <span class="chip">HTML5</span>
+              <span class="chip">CSS3</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">TypeScript</span>
+              <span class="chip">React.js</span>
+              <span class="chip">Responsive Design</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Mobile</h3>
+            <div class="chips">
+              <span class="chip">React Native</span>
+              <span class="chip">Redux</span>
+              <span class="chip">Navigation</span>
+              <span class="chip">AsyncStorage</span>
+              <span class="chip">Native Modules</span>
+              <span class="chip">Performance Optimization</span>
+            </div>
+          </div>
+          <div class="skill-box">
+            <h3>Tools & Deployment</h3>
+            <div class="chips">
+              <span class="chip">Git</span>
+              <span class="chip">GitHub</span>
+              <span class="chip">VS Code</span>
+              <span class="chip">Postman</span>
+              <span class="chip">Play Store</span>
+              <span class="chip">App Store</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container card">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects">
+          <div class="project-card">
+            <h3>HRMS ESS Mobile App</h3>
+            <p>
+              Built and enhanced employee self-service mobile modules including dashboard, attendance, leave request,
+              regularization, settings, and profile screens with modern UI and workflow support.
+            </p>
+            <div class="chips">
+              <span class="chip">React Native</span>
+              <span class="chip">Redux</span>
+              <span class="chip">API Integration</span>
+              <span class="chip">Android / iOS</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Leave Request Management</h3>
+            <p>
+              Developed features like retroactive leave requests, manager-on-behalf leave application, approval/reject flows,
+              validations, date policies, and improved UI card views for better usability.
+            </p>
+            <div class="chips">
+              <span class="chip">Workflow UI</span>
+              <span class="chip">Business Logic</span>
+              <span class="chip">Validation</span>
+              <span class="chip">Optimization</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Responsive Web Dashboards</h3>
+            <p>
+              Designed and implemented modern front-end interfaces for dashboards, reports, profile pages, and role-based modules
+              with reusable components and responsive layouts.
+            </p>
+            <div class="chips">
+              <span class="chip">React.js</span>
+              <span class="chip">HTML/CSS</span>
+              <span class="chip">JavaScript</span>
+              <span class="chip">Responsive UI</span>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>App Release & Testing Support</h3>
+            <p>
+              Supported AAB builds, beta release deployments, internal testing, bug resolution, and coordination for production
+              rollouts across Android and iOS platforms.
+            </p>
+            <div class="chips">
+              <span class="chip">Builds</span>
+              <span class="chip">Testing</span>
+              <span class="chip">Release Process</span>
+              <span class="chip">Production Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h2 class="section-title">Education</h2>
+          <p><strong style="color: var(--text);">Bachelor’s Degree</strong></p>
+          <p>Update your degree, college name, and passing year here.</p>
+        </div>
+
+        <div class="card" id="contact">
+          <h2 class="section-title">Contact</h2>
+          <p>Email: yourmail@example.com</p>
+          <p>Phone: +91 XXXXX XXXXX</p>
+          <p>LinkedIn: linkedin.com/in/yourprofile</p>
+          <p>GitHub: <a href="https://github.com/yourprofile" target="_blank">https://github.com/yourprofile</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Harsha Charan J • Front-End & React Native Developer Portfolio Resume
+    </div>
+  </footer>
+
+  <!-- ATS Keywords Section (hidden for recruiters parsing) -->
+  <section style="display:none">
+    React Developer, React Native Developer, Frontend Developer, JavaScript, TypeScript, Redux, Mobile App Development,
+    Android, iOS, REST API, UI Development, Responsive Design, Performance Optimization, Git, Agile
+  </section>
+  <script>
+    function downloadPDF() {
+      window.print();
+    }
+  </script>
+</body>
+</html>
