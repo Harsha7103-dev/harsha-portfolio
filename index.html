@@ -39,11 +39,12 @@
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
-.container {
-  width: min(var(--max), calc(100% - 32px));
-  margin: 0 auto;
-}
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
+    /* ── NAV ── */
     .nav {
       position: sticky;
       top: 0;
@@ -79,6 +80,7 @@
 
     .nav-links a:hover { color: var(--text); }
 
+    /* ── HERO ── */
     .hero {
       padding: 72px 0 36px;
     }
@@ -90,19 +92,39 @@
       align-items: stretch;
     }
 
-    .hero-card, .card {
+    /* ── CARDS ── */
+    .hero-card {
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      padding: 42px 40px;
+      position: relative;
+      overflow: hidden;
+      width: 100%;
     }
 
-.hero-card,
-.card,
-.side-card {
-  width: 90%;
-  margin: 0 auto;
-}
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      width: 100%;
+    }
+
+    .side-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      width: 100%;
+    }
 
     .hero-card::after {
       content: "";
@@ -179,14 +201,6 @@
 
     .btn:hover { transform: translateY(-2px); }
 
-    .side-card {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
     .avatar {
       width: 92px;
       height: 92px;
@@ -208,6 +222,7 @@
 
     .meta strong { color: var(--text); display: block; font-size: 0.9rem; }
 
+    /* ── SECTIONS ── */
     section {
       padding: 18px 0;
     }
@@ -228,12 +243,9 @@
       gap: 24px;
     }
 
-    .card {
-      padding: 28px;
-    }
-
     .about p, .card p { margin: 0; color: var(--muted); }
 
+    /* ── CHIPS ── */
     .chips {
       display: flex;
       flex-wrap: wrap;
@@ -251,6 +263,7 @@
       font-weight: 500;
     }
 
+    /* ── TIMELINE ── */
     .timeline {
       display: grid;
       gap: 18px;
@@ -308,6 +321,7 @@
 
     li + li { margin-top: 8px; }
 
+    /* ── SKILLS ── */
     .skill-columns {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -326,6 +340,7 @@
       font-size: 1rem;
     }
 
+    /* ── PROJECTS ── */
     .projects {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -349,6 +364,7 @@
       color: var(--muted);
     }
 
+    /* ── HIGHLIGHTS ── */
     .highlights {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -376,12 +392,14 @@
       font-size: 0.95rem;
     }
 
+    /* ── FOOTER ── */
     .footer {
       padding: 34px 0 60px;
       color: var(--muted);
       text-align: center;
     }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 980px) {
       .hero-grid,
       .grid-2,
@@ -421,20 +439,14 @@
     }
 
     @media (max-width: 480px) {
-      body {
-        font-size: 14px;
-      }
-
-      .brand {
-        font-size: 1rem;
-      }
-
-      h1 {
-        font-size: 1.8rem;
-      }
-    }  </style>
+      body { font-size: 14px; }
+      .brand { font-size: 1rem; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
 </head>
 <body>
+
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">Harsha Charan J</div>
@@ -458,15 +470,15 @@
           Skilled in React, React Native, JavaScript, TypeScript, Redux, REST APIs, UI implementation, and performance optimization.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="mailto:yourmail@example.com">Hire Me</a>
+          <a class="btn btn-primary" href="mailto:harshacharanreddy@gmail.com">Hire Me</a>
           <a class="btn btn-secondary" href="#projects">View Projects</a>
         </div>
       </div>
-
     </div>
   </header>
 
   <main>
+
     <section id="about">
       <div class="container grid-2">
         <div class="card about">
@@ -524,6 +536,7 @@
         <h2 class="section-title">Professional Experience</h2>
         <p class="section-sub">4+ years of experience in web and mobile application development.</p>
         <div class="timeline">
+
           <div class="timeline-item">
             <div class="item-top">
               <h3 class="role">React Native / Front-End Developer</h3>
@@ -542,7 +555,7 @@
           <div class="timeline-item">
             <div class="item-top">
               <h3 class="role">Front-End Developer</h3>
-              <span class="period">September 2023 - July 2024</span>
+              <span class="period">September 2023 – July 2024</span>
             </div>
             <div class="company">Yugasys Software Pvt Ltd.</div>
             <ul>
@@ -552,19 +565,21 @@
               <li>Collaborated with backend and testing teams to deliver stable and user-friendly features.</li>
             </ul>
           </div>
-           <div class="timeline-item">
+
+          <div class="timeline-item">
             <div class="item-top">
               <h3 class="role">React Native Developer</h3>
-              <span class="period">March 2022 - August 2023</span>
+              <span class="period">March 2022 – August 2023</span>
             </div>
             <div class="company">Federal Soft Systems Pvt Ltd.</div>
             <ul>
-              <li>Created responsive web interfaces using React.js, JavaScript, HTML, CSS, and reusable components.</li>
-              <li>Implemented modern UI designs for forms, dashboards, and user workflows.</li>
-              <li>Handled API integration, validations, state management, and UI bug fixes.</li>
+              <li>Developed cross-platform mobile applications using React Native for Android and iOS.</li>
+              <li>Implemented UI components, navigation flows, and API integrations.</li>
+              <li>Handled state management, performance optimizations, and bug fixes.</li>
               <li>Collaborated with backend and testing teams to deliver stable and user-friendly features.</li>
             </ul>
           </div>
+
         </div>
       </div>
     </section>
@@ -628,9 +643,6 @@
             </div>
           </div>
 
-         
-          
-
           <div class="project-card">
             <h3>App Release & Testing Support</h3>
             <p>
@@ -652,38 +664,34 @@
       <div class="container grid-2">
         <div class="card">
           <h2 class="section-title">Education</h2>
-          <p><strong style="color: var(--text);">Bachelor’s Degree</strong></p>
-          <p>Bachelors Of Technology in Information Technology from CV Engineering College, Tirupati, Andhra Pradesh.</p>
-          <p><strong style="color: var(--text);">Master’s Degree</strong></p>
-          <p>Masters Of Technology in Computer Science from SRM University, Chennai, Tamil Nadu.</p>
+          <p><strong style="color: var(--text);">Bachelor's Degree</strong></p>
+          <p style="margin-bottom: 16px;">B.Tech in Information Technology — CV Engineering College, Tirupati, Andhra Pradesh.</p>
+          <p><strong style="color: var(--text);">Master's Degree</strong></p>
+          <p>M.Tech in Computer Science — SRM University, Chennai, Tamil Nadu.</p>
         </div>
 
         <div class="card" id="contact">
           <h2 class="section-title">Contact</h2>
-          <p>Email: harshacharanreddy@gmail.com</p>
-          <p>Phone: +91-9739111102</p>
-          <p>LinkedIn: linkedin.com/in/yourprofile</p>
-          <p>GitHub: <a href="https://github.com/Harsha7103-dev" target="_blank">https://github.com/yourprofile</a></p>
+          <p style="margin-bottom: 10px;">📧 harshacharanreddy@gmail.com</p>
+          <p style="margin-bottom: 10px;">📱 +91-9739111102</p>
+          <p style="margin-bottom: 10px;">🔗 linkedin.com/in/yourprofile</p>
+          <p>💻 <a href="https://github.com/Harsha7103-dev" target="_blank" style="color: var(--accent-2);">github.com/Harsha7103-dev</a></p>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
     <div class="container">
-      © 2026 Harsha Charan J • Front-End & React Native Developer Portfolio Resume
+      © 2026 Harsha Charan J • Front-End & React Native Developer Portfolio
     </div>
   </footer>
 
-  <!-- ATS Keywords Section (hidden for recruiters parsing) -->
   <section style="display:none">
     React Developer, React Native Developer, Frontend Developer, JavaScript, TypeScript, Redux, Mobile App Development,
     Android, iOS, REST API, UI Development, Responsive Design, Performance Optimization, Git, Agile
   </section>
-  <script>
-    function downloadPDF() {
-      window.print();
-    }
-  </script>
+
 </body>
 </html>
